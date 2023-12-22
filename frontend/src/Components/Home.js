@@ -8,7 +8,7 @@ function Home() {
     return (
         <>
             <div style={{position: 'relative'}}>
-                <img src={city} className="cityImg" />
+                <img src={city} className="cityImg" alt="city" />
                 <div className="overlayText">
                     <Typography variant="h1" sx={{
                         color: 'white',
