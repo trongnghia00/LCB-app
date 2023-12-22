@@ -1,52 +1,30 @@
 import React from "react";
 import '../Home.css';
+import city from './Assets/city.jpg';
 
-import { CssBaseline, Typography } from "@mui/material";
-import { Button, AppBar, Toolbar } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 function Home() {
     return (
         <>
-            <CssBaseline />
-            <AppBar position="static" style={{backgroundColor: 'black'}}>
-                <Toolbar>
-                    <div className="leftNav">
-                        <Button color="inherit">
-                            <Typography variant="h4">LCB - App</Typography>{" "}
-                        </Button>
-                    </div>
-                    <div>
-                        <Button color="inherit" sx={{marginRight: '2rem'}}>
-                            <Typography variant="h6">Listings</Typography>{" "}
-                        </Button>
-                        <Button color="inherit" sx={{marginLeft: '2rem'}}>
-                            <Typography variant="h6">Agencies</Typography>{" "}
-                        </Button>
-                    </div>
-                    <div className="rightNav">
-                        <Button sx={{
-                            bgcolor: 'green',
-                            color: 'white',
-                            width: '15rem',
-                            fontSize: '1.1rem',
-                            marginRight: '1rem',
-                            '&:hover': {
-                                backgroundColor: 'blue'
-                            }
-                        }}>Add property</Button>
-                        <Button sx={{
-                            bgcolor: 'white',
-                            color: 'black',
-                            width: '15rem',
-                            fontSize: '1.1rem',
-                            marginLeft: '1rem',
-                            '&:hover': {
-                                backgroundColor: 'green'
-                            }
-                        }}>Login</Button>
-                    </div>
-                </Toolbar>
-            </AppBar>
+            <div style={{position: 'relative'}}>
+                <img src={city} className="cityImg" />
+                <div className="overlayText">
+                    <Typography variant="h1" sx={{
+                        color: 'white',
+                        fontWeight: 'bolder'
+                    }}>
+                        Tìm <span style={{color: 'red'}}>ngôi nhà mơ ước</span> của bạn tại LCB-App
+                    </Typography>
+                    <Button variant="contained" sx={{
+                        fontSize: '3.5rem',
+                        borderRadius: '15px',
+                        bgcolor: 'green',
+                        marginTop: '2rem',
+                        boxShadow: '3px 3px 3px white'
+                    }}>Xem danh sách</Button>
+                </div>
+            </div>
         </>
     );
 }
