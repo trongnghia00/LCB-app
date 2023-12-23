@@ -1,4 +1,4 @@
-import { AppBar, Button, Grid, Typography } from "@mui/material";
+import { AppBar, Button, Card, CardContent, CardHeader, CardMedia, Grid, Typography } from "@mui/material";
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
@@ -26,11 +26,63 @@ function Listings() {
     return (
         <Grid container>
             <Grid item xs={4}>
-                <Typography variant="h1">
-                    BLANK SPACE
-                </Typography>
+                {myListings.map((listing) => {
+                    return (
+                        <Card key={listing.id} sx={{
+                            margin: '1rem',
+                            border: '1px solid black',
+                            position: 'relative'
+                        }}>
+                            <CardHeader title={listing.title} />
+                            <CardMedia 
+                                component="img"
+                                image={listing.picture1}
+                                alt={listing.title}
+                                sx={{
+                                    paddingRight: '1rem',
+                                    paddingLeft: '1rem',
+                                    height: '20rem',
+                                    width: '30rem'
+                                }}
+                            />
+                            <CardContent>
+                                <Typography variant="body2">
+                                    {listing.description.substring(0,100)} ...
+                                </Typography>
+                            </CardContent>
+
+                            {listing.property_status === 'Sale' ? (
+                                <Typography sx={{
+                                    position: 'absolute',
+                                    background: 'green',
+                                    zIndex: '1000',
+                                    color: 'white',
+                                    top: '100px',
+                                    left: '20px',
+                                    padding: '5px'
+                                }}>
+                                    {listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VNĐ
+                                </Typography>
+                            ): (
+                                <Typography sx={{
+                                    position: 'absolute',
+                                    background: 'blue',
+                                    zIndex: '1000',
+                                    color: 'white',
+                                    top: '100px',
+                                    left: '20px',
+                                    padding: '5px'
+                                }}>
+                                    {listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VNĐ / {listing.rental_frequency}
+                                </Typography>
+                            )}
+
+                            
+                        </Card>
+                    );
+                })}
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={8} style={{marginTop: '0.5rem'}}>
                 <AppBar position="sticky">
                     <div style={{height:'100vh'}}>
                         <MapContainer center={position} zoom={16} scrollWheelZoom={true}>
@@ -64,7 +116,7 @@ function Listings() {
                                                 <img 
                                                     src={listing.picture1} 
                                                     style={{width:'15rem', height:'10rem'}}
-                                                    alt="" 
+                                                    alt={listing.title} 
                                                 />
                                                 <Typography variant="body1">
                                                     {listing.description.substring(0, 100)} ...

@@ -88,7 +88,7 @@ const myListings = [
 	},
 	{
 		id: 4,
-		title: "Văn phòng cho thuê",
+		title: "Chuyển nhượng văn phòng",
 		listing_type: "Office",
 		description:
 			"Occaecat labore tempor est consequat ea et ut adipisicing ipsum officia amet. Incididunt proident nisi nulla laborum occaecat ut cupidatat consectetur nulla magna. Do esse minim voluptate exercitation do pariatur irure labore aliquip fugiat. Exercitation esse et proident ex ex laborum labore eu veniam. Proident laboris enim officia nostrud do occaecat in ut ex veniam veniam ex tempor ad. Nostrud exercitation ad nulla commodo cillum adipisicing commodo magna cupidatat aliqua in consequat labore amet.",
@@ -280,7 +280,7 @@ const myListings = [
 
 	{
 		id: 12,
-		title: "Văn phòng cho thuê Đường 22",
+		title: "Bán Văn phòng Đường 22",
 		listing_type: "Office",
 		description:
 			"Fugiat mollit nostrud exercitation ullamco ex aute sunt consequat do est laboris minim proident. Nisi officia sit culpa irure tempor Lorem fugiat duis veniam velit occaecat laboris. Esse quis ullamco aute nisi. Et nisi duis cupidatat velit irure nulla qui in sunt laborum Lorem occaecat.",
