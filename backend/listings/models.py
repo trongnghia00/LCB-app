@@ -29,3 +29,6 @@ class Listings(models.Model):
     furnished = models.BooleanField(default=False)
     date_posted = models.DateTimeField(default=timezone.now)
     location = models.PointField(blank=True, null=True, srid=4326)
+
+    def __str__(self):
+        return self.title
