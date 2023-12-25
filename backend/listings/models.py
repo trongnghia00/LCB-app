@@ -30,5 +30,7 @@ class Listings(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     location = models.PointField(blank=True, null=True, srid=4326)
 
+    picture1 = models.ImageField(blank=True, null=True, upload_to="pictures/%Y/%m/%d/")
+
     def __str__(self):
         return self.title

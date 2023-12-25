@@ -10,7 +10,7 @@ from django.contrib.gis.geos import Point
 class ListingsForm(forms.ModelForm):
     class Meta:
         model = Listings
-        fields = ['title', 'description', 'listings_type', 'property_status', 'price', 'rental_frequency', 'rooms', 'furnished', 'date_posted', 'location', 'latitude', 'longitude']
+        fields = ['title', 'description', 'listings_type', 'property_status', 'price', 'rental_frequency', 'rooms', 'furnished', 'date_posted', 'location', 'latitude', 'longitude', 'picture1']
 
     latitude = forms.FloatField()
     longitude = forms.FloatField()
