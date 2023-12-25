@@ -1,5 +1,6 @@
-import { AppBar, Button, Card, CardContent, CardHeader, CardMedia, Grid, Typography } from "@mui/material";
-import React from "react";
+import { AppBar, Button, Card, CardContent, CardHeader, CardMedia, CircularProgress, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import houseIconPng from './Assets/Mapicons/house.png';
@@ -7,9 +8,15 @@ import appartmentIconPng from './Assets/Mapicons/apartment.png';
 import officeIconPng from './Assets/Mapicons/office.png';
 import { Icon } from "leaflet";
 
-import myListings from "./Assets/Data/Dummydata";
+// import myListings from "./Assets/Data/Dummydata";
 
 function Listings() {
+
+    // Test API
+    // fetch("http://127.0.0.1:8000/api/listings/")
+    //     .then((response) => response.json())
+    //     .then((data) => console.log(data));
+
     const position = [10.733459815418502, 106.6269602586756];
     const houseIcon = new Icon({
         iconUrl: houseIconPng,
@@ -23,10 +30,34 @@ function Listings() {
         iconUrl: officeIconPng,
         iconSize: [40, 40]
     });
+
+    const [allListings, setAllListings] = useState([]);
+    const [dataIsLoading, setDataIsLoading] = useState(true);
+
+    useEffect(() => {
+        async function GetAllListings() {
+            const response = await Axios.get("http://127.0.0.1:8000/api/listings/");
+            // console.log(response.data);
+            setAllListings(response.data);
+            setDataIsLoading(false);
+        }
+        GetAllListings();
+    }, []);
+
+    console.log(allListings);
+
+    if (dataIsLoading === true) {
+        return (
+            <Grid container justifyContent="center" alignItems="center" style={{height: "100vh"}}>
+                <CircularProgress />
+            </Grid>
+        );
+    }
+
     return (
         <Grid container>
             <Grid item xs={4}>
-                {myListings.map((listing) => {
+                {allListings.map((listing) => {
                     return (
                         <Card key={listing.id} sx={{
                             margin: '1rem',
@@ -90,15 +121,15 @@ function Listings() {
                                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
-                            {myListings.map((listing)=>{
+                            {allListings.map((listing)=>{
                                 function IconDisplay() {
-                                    if (listing.listing_type === 'House'){
+                                    if (listing.listings_type === 'House'){
                                         return houseIcon;
                                     }
-                                    else if (listing.listing_type === 'Apartment') {
+                                    else if (listing.listings_type === 'Apartment') {
                                         return appartmentIcon;
                                     }
-                                    else if (listing.listing_type === 'Office') {
+                                    else {
                                         return officeIcon;
                                     }
                                 }
