@@ -155,3 +155,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+
+DJOSER = {
+    'SET_PASSWORD_RETYPE': True,
+    'SEND_ACTIVATION_EMAIL': False
+}

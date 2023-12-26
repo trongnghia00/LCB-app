@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import '../App.css';
 
 import { Button, AppBar, Toolbar, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import StateContext from "../Contexts/StateContext";
 
 function Header() {
     const navigate = useNavigate();
+    const GlobalState = useContext(StateContext);
     return (
         <AppBar position="static" style={{backgroundColor: 'black'}}>
             <Toolbar>
@@ -33,16 +35,30 @@ function Header() {
                             backgroundColor: 'blue'
                         }
                     }}>Add property</Button>
-                    <Button onClick={()=>navigate('/login')} sx={{
-                        bgcolor: 'white',
-                        color: 'black',
-                        width: '15rem',
-                        fontSize: '1.1rem',
-                        marginLeft: '1rem',
-                        '&:hover': {
-                            backgroundColor: 'green'
-                        }
-                    }}>Login</Button>
+                    {GlobalState.userUsername ? (
+                        <Button sx={{
+                            bgcolor: 'white',
+                            color: 'black',
+                            width: '15rem',
+                            fontSize: '1.1rem',
+                            marginLeft: '1rem',
+                            '&:hover': {
+                                backgroundColor: 'green'
+                            }
+                        }}>{GlobalState.userUsername}</Button>
+                    ) : (
+                        <Button onClick={()=>navigate('/login')} sx={{
+                            bgcolor: 'white',
+                            color: 'black',
+                            width: '15rem',
+                            fontSize: '1.1rem',
+                            marginLeft: '1rem',
+                            '&:hover': {
+                                backgroundColor: 'green'
+                            }
+                        }}>Login</Button>
+                    )}
+                    
                 </div>
             </Toolbar>
         </AppBar>
