@@ -32,6 +32,15 @@ function App() {
         localStorage.setItem('userEmail', action.usernameInfo);
         localStorage.setItem('userId', action.idInfo);
         break;
+      case "logout":
+        draft.userToken = '';
+        draft.userUsername = '';
+        draft.userEmail = '';
+        draft.userId = '';
+        localStorage.removeItem('userUsername');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userToken');
       default:
         break;
     }
